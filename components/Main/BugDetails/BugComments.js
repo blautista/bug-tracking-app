@@ -10,7 +10,7 @@ const BugComments = (props) => {
 
   const addComment = () => {
     const body = textareaRef.current.value;
-    const user = 'pepitongo';
+    const user = 'pepito1';
 
     const data = {body: body, username: user};
     console.log(input);
@@ -24,9 +24,9 @@ const BugComments = (props) => {
         return (
           <div className={styles.commentContainer} key={comment.createdAt}>
             <h3>
-              {comment.user} | {comment.createdAt}
+              {comment.username} | {comment.createdAt}
             </h3>
-            <p>{comment.body}</p>
+            <p>{comment.description}</p>
           </div>
         );
       })}

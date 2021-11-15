@@ -44,6 +44,9 @@ export async function getStaticProps({ params }) {
       number: parseInt(params.issueNumber),
       projectTitle: params.projectTitle,
     },
+    include: {
+      comments: true,
+    }
   });
 
   const jsonissue = JSON.stringify(data);
