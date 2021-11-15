@@ -10,10 +10,6 @@ import BugComments from "./BugComments";
 const BugDetails = (props) => {
 
   const [newModificationModal, setNewModificationModal] = useState(null);
-
-  const handleNewComment = (data) => {
-    console.log(data);
-  }
   
   const openNewModificationModal = () => {
     setNewModificationModal(<Modal title='New Modification' onExit={closeNewModificationModal}/>);
@@ -63,7 +59,7 @@ const BugDetails = (props) => {
 
         <section className={styles.sectionContainer}>
           <h2 className={styles.sectionTitle}>Comments:</h2>
-          <BugComments comments={props.data.comments} onNewComment={handleNewComment} />
+          <BugComments comments={props.data.comments} issueId={props.data.id}/>
         </section>
       </div>
     </>

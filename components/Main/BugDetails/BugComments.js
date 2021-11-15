@@ -8,14 +8,23 @@ const BugComments = (props) => {
 
   const textareaRef = useRef();
 
-  const addComment = () => {
+  const addComment = async () => {
     const body = textareaRef.current.value;
     const user = 'pepito1';
 
-    const data = {body: body, username: user};
-    console.log(input);
+    const data = {description: body, username: user, issueId: props.issueId};
 
-    if (true) props.onNewComment(data);
+    const res = await fetch('/api/new-comment', {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      }
+    });
+
+    if (!res.ok) {
+      console.log('uh oh bad thing happened');
+    }
   }
   
   return (
