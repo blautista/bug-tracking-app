@@ -1,0 +1,19 @@
+$dashboard-height: 60px;
+
+.panelContainer {
+    height:$dashboard-height;
+    background:white;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top:1px solid lightgray;
+}
+
+.panelGroup {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position:relative;
+    margin-left:8px;
+    margin-right:8px;
+}

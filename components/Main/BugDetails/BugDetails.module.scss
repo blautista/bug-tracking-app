@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 8px;
+  margin-right:8px; 
+}
+.aside {
+  display:flex;
+  flex-direction: column;
+  border-right:1px solid lightgray;
+
+  li {
+    list-style: none;
+    padding:8px;
+  }
+}
+.title {
+  font-size: 2em;
+  margin-top:16px;
+  display:flex;
+  align-items: center;
+  padding: bottom 8px;
+}
+
+.sectionContainer {
+  border-bottom: 1px solid lightgray;
+  padding: 8px 0px 8px 0px;
+  .sectionTitle {
+    font-weight: bold;
+    padding-bottom:8px;
+  }
+}
+
+
+.subtitle {
+  font-style: italic;
+}

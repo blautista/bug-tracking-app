@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:pepe01@127.0.0.1:3306/bugtracker"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String              @id @default(cuid())
+  username      String              @unique
+  email         String              @unique
+  password      String
+  role          Role
+  comments      Comment[]
+  issues        Issue[]
+  modifications IssueModification[]
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  title     String @unique
+  createdAt DateTime @default(now())
+  issues    Issue[]
+}
+
+model Comment {
+  id          String   @id @default(cuid())
+  description String   @db.Text
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [username], references: [username])
+  issue       Issue    @relation(fields: [issueId], references: [id])
+  username    String
+  issueId     String
+}
+
+model Issue {
+  id          String              @id @default(cuid())
+  number      Int
+  title       String              
+  description String              @db.Text
+  createdAt   DateTime            @default(now())
+  comments    Comment[]
+  history     IssueModification[]
+  status      IssueStatus         @default(UNCONFIRMED)
+  priority    IssuePriority
+  img         String?
+  category    IssueCategory
+  user        User                @relation(fields: [createdBy], references: [username])
+  project     Project             @relation(fields: [projectTitle], references: [title])
+  projectTitle   String
+  createdBy   String
+}
+
+model IssueModification {
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  status      IssueStatus
+  description String      @db.Text
+  user        User        @relation(fields: [createdBy], references: [username])
+  issue       Issue       @relation(fields: [issueId], references: [id])
+  issueId     String
+  createdBy   String
+}
+
+enum Role {
+  DEVELOPER
+  ADMIN
+  USER
+}
+
+enum IssuePriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum IssueStatus {
+  UNCONFIRMED
+  INPROGRESS
+  ONHOLD
+  FIXED
+  CLOSED
+}
+
+enum IssueCategory {
+  BUG
+  TASK
+  ENHANCEMENT
+  NEWFEATURE
+}

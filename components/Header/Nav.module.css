@@ -1,0 +1,24 @@
+.nav {
+    display:flex;
+    font-size: 1.2rem;
+    justify-self: flex-end;
+    align-items: center;
+    height:100%;
+}
+
+.ul {
+    display:flex;
+    align-items: center;
+}
+
+.li {
+    color:gray;
+    padding:8px;
+    list-style-type: none;
+    cursor:pointer;
+    border-left: 1px solid #eee;
+}
+
+.li:hover {
+    color:black;
+}

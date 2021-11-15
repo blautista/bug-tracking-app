@@ -1,0 +1,30 @@
+.tag {
+  padding:4px 8px 4px 8px;
+  border-radius: 5px;
+  display:inline-block;
+  margin:4px;
+  font-size: 14px;
+  position:relative;
+  align-self: center;
+  margin-left:8px;
+}
+
+.blue {
+  background: rgb(105, 105, 255);
+  color:white;
+}
+
+.green {
+  background:green;
+  color:white;
+}
+
+.white {
+  background:white;
+  color:gray;
+}
+
+.red {
+  background:rgb(255, 93, 93);
+  color:white;
+}

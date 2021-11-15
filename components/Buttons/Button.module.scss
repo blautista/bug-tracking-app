@@ -1,0 +1,47 @@
+@mixin btnTheme($btnBg: white, $btnColor: gray) {
+  background:$btnBg;
+  color: $btnColor;
+}
+
+.btn {
+  height:40px;
+  background:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding:8px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  border: 1px solid lightgray;
+  font-size: 1em;
+  font-weight: bold;
+  cursor:pointer;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.blue {
+  @include btnTheme($btnBg: blue, $btnColor: white);
+}
+
+.white {
+  @include btnTheme($btnBg: white, $btnColor: gray);  
+}
+
+.closeButton{
+  font-size: 30px;
+  border-radius: 50%;
+  padding:4px;
+  width:40px;
+  height:40px;
+  color:gray;
+  text-align: center;
+  background:transparent;
+  border:none;
+  transition: background .3s;
+}
+
+.closeButton:hover {
+  background: #eee;
+  color:black;
+}

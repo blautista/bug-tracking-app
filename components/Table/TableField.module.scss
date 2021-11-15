@@ -1,0 +1,15 @@
+%field-shared {
+  padding:8px;
+  text-align: start;
+  overflow-wrap:break-word;
+  word-break: break-all;
+  hyphens:auto; 
+}
+
+.field {
+  @extend %field-shared;
+}
+
+.headerField {
+  @extend %field-shared;
+}

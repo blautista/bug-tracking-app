@@ -1,0 +1,27 @@
+.logo {
+    /* flex-grow:0; */
+    font-size: 2rem;
+    /* margin: auto; */
+    width:200px; 
+    /* align-self: center; */
+    height:inherit;
+    background-image: url('./hamburger.svg');
+    background-repeat: no-repeat;
+    background-position:left;
+    margin-left: 16px;
+    /* justify-self: flex-start; */
+}
+
+/* .logo.desktop::before {
+    background-image: url('./hamburger.svg');
+} */
+
+/* .logo::before {
+    background-image: url('./hamburger.svg');
+} */
+
+@media (min-width: 768px) {
+    .logo {
+        background-image: url('./logo.svg');
+    }
+} 

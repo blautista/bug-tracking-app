@@ -1,0 +1,12 @@
+.container {
+  display:flex;
+  flex-direction: row;
+  height: calc(100vh - var(--header-height));
+}
+.main {
+  padding:8px;
+  background:#eee;
+  border:1px solid #ddd;
+  flex:1;
+  border-right:8px solid white;
+}
