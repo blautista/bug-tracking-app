@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Modal.module.css';
 import Button from '../Buttons/Button';
 import ReactDOM from 'react-dom';
@@ -20,6 +20,10 @@ const Modal = (props) => {
                         </div>
                         <div className={styles.modalBody}>
                             {props.children}
+                        </div>
+                        <div className={styles.modalFooter}>
+                            {props.showLoading && <p>LOADING...</p>}
+                            {props.showError && <p style={{color: 'red'}}>{props.errorMessage}</p>}
                         </div>
                     </div>
                 </div>,
