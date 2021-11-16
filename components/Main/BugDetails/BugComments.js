@@ -9,10 +9,10 @@ const BugComments = (props) => {
   const textareaRef = useRef();
 
   const addComment = async () => {
-    const body = textareaRef.current.value;
+    const description = textareaRef.current.value;
     const user = 'pepito1';
 
-    const data = {description: body, username: user, issueId: props.issueId};
+    const data = {description: description, username: user, issueId: props.issueId};
 
     const res = await fetch('/api/new-comment', {
       method: "POST",

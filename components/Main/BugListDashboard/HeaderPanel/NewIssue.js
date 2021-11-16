@@ -32,6 +32,8 @@ const NewIssue = (props) => {
 
     if (res) {
       props.onNewIssue(data);
+    } else {
+      props.onNewIssueFail();
     }
   }
   

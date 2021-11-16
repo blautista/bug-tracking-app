@@ -1,0 +1,11 @@
+.formContainer {
+  display:flex;
+  flex-direction: column;
+}
+
+.formRow {
+  display:flex;
+  flex-direction: row;
+  justify-content: stretch;
+  margin-top:8px;
+}

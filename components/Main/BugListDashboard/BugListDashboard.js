@@ -14,11 +14,6 @@ const BugListDashboard = (props) => {
   const [isLoading, setIsLoading] = useState(null);
   const [fetchingError, setFetchingError] = useState(null);
 
-  useEffect(() => {
-    router.events.on('routeChangeStart', handleDetailsLoading);
-    router.events.on('routeChangeComplete', handleDetailsLoadingComplete);
-  }, []);
-
   const data = issues;
   const columns = [
     "number",
@@ -54,14 +49,7 @@ const BugListDashboard = (props) => {
     });
   };
 
-  const handleDetailsLoading = () => {
-    console.log('loading...');
-  }
-  const handleDetailsLoadingComplete = () => {
-    console.log('Done!');
-  }
   const handleNewIssue = (data) => {
-    console.log('im filtering!!');  
     setIssues(oldData => [...oldData, data]);
   }
 
