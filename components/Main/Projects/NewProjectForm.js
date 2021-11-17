@@ -7,6 +7,8 @@ import Modal from "../../Modal/Modal";
 const NewProjectForm = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasFetchingFailed, setHasFetchingFailed] = useState(false);
+  const [hasFetchingSucceeded, setHasFetchingSucceeded] = useState(false);
+
   const initialValues = {
     title: "",
   };
@@ -19,15 +21,17 @@ const NewProjectForm = (props) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({badproperty: 'hi'}),
+      body: JSON.stringify(data),
     });
 
     setIsLoading(false);
-    console.log(res);
+
     if (res.ok) {
       setHasFetchingFailed(false);
+      setHasFetchingSucceeded(true);
     } else {
       setHasFetchingFailed(true);
+      setHasFetchingSucceeded(false);
     }
   };
 
@@ -35,7 +39,11 @@ const NewProjectForm = (props) => {
     <Modal
       showLoading={isLoading}
       showError={hasFetchingFailed}
-      errorMessage={'Error trying to create the new project. Please try again later'}
+      errorMessage={
+        "Error trying to create the new project. Please try again later"
+      }
+      showSuccess={hasFetchingSucceeded}
+      successMessage={"New project created succesfully!"}
       onExit={props.onExit}
       title="Create new project"
     >
