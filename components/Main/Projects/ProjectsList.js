@@ -25,11 +25,13 @@ const ProjectsList = (props) => {
       });
     });
   }, []);
-
-  const formatProjectDataForTable = (projects) => {};
-
+  
   const openNewProjectModal = () => {
-    setNewProjectModal(<NewProjectForm onSubmit={createNewProject} />);
+    setNewProjectModal(<NewProjectForm onSubmit={createNewProject} onExit={closeNewProjectModal}/>);
+  };
+  
+  const closeNewProjectModal = () => {
+    setNewProjectModal(null);
   };
 
   const createNewProject = async (data) => {
@@ -50,9 +52,6 @@ const ProjectsList = (props) => {
     }
   };
 
-  const closeNewProjectModal = () => {
-    setNewProjectModal(null);
-  };
 
   const columns = [
     { key: "title", component: <h3></h3>, customProp: "children" },

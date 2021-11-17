@@ -1,35 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Formik, Field } from "formik";
 import Button from "../../Buttons/Button";
 import styles from "./NewProjectForm.module.scss";
 import Modal from "../../Modal/Modal";
 
 const NewProjectForm = (props) => {
-  
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasFetchingFailed, setHasFetchingFailed] = useState(false);
   const initialValues = {
-    title: '',
-  }
+    title: "",
+  };
 
   const createNewProject = async (data) => {
-    
+    setHasFetchingFailed(false);
+    setIsLoading(true);
     const res = await fetch("/api/new-project", {
       method: "POST",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({badproperty: 'hi'}),
     });
 
+    setIsLoading(false);
+    console.log(res);
     if (res.ok) {
-
+      setHasFetchingFailed(false);
     } else {
-
+      setHasFetchingFailed(true);
     }
-  }
-  
+  };
 
   return (
-    <Modal onExit={props.onExit} title="Create new project">
+    <Modal
+      showLoading={isLoading}
+      showError={hasFetchingFailed}
+      errorMessage={'Error trying to create the new project. Please try again later'}
+      onExit={props.onExit}
+      title="Create new project"
+    >
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
