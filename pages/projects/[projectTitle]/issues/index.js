@@ -16,13 +16,16 @@ export async function getStaticPaths() {
   const parsedData = JSON.parse(JSON.stringify(data));
 
   return {
-    paths: parsedData.map(data => { return {params: { projectTitle: data.title}}}),
-    fallback: 'blocking',
-  }
+    paths: parsedData.map((data) => {
+      return { params: { projectTitle: data.title } };
+    }),
+    fallback: "blocking",
+  };
 }
 
 export async function getStaticProps({ params }) {
   const data = await prisma.issue.findMany({
+    orderBy: [{ createdAt: "desc" }],
     where: {
       projectTitle: params.projectTitle,
     },

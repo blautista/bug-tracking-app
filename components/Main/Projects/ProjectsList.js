@@ -54,7 +54,7 @@ const ProjectsList = (props) => {
 
 
   const columns = [
-    { key: "title", component: <h3></h3>, customProp: "children" },
+    { key: "title", component: <h3></h3>, customProps: ["children"] },
     "numberOfIssues",
     "createdAt",
   ];

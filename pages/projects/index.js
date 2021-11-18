@@ -8,6 +8,7 @@ const ProjectsPage = (props) => {
 
 export async function getServerSideProps() {
   const data = await prisma.project.findMany({
+    orderBy: [{ createdAt: 'desc' }],
     include: {
       _count: {
         select: { issues: true },
