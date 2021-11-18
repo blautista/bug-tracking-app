@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./AsideNav.module.scss";
+import {FaGripHorizontal, FaIgloo, FaUserFriends} from 'react-icons/fa'
 const AsideNav = () => {
   const router = useRouter();
 
@@ -12,6 +13,7 @@ const AsideNav = () => {
         query: {},
       },
       text: "Projects",
+      icon: <FaGripHorizontal/>,
     },
     {
       href: {
@@ -19,6 +21,7 @@ const AsideNav = () => {
         query: {projectTitle: router.query.projectTitle},
       },
       text: "Issues",
+      icon: <FaIgloo/>
     },
     {
       href: {
@@ -26,6 +29,7 @@ const AsideNav = () => {
         query: {},
       },
       text: "Manage Users",
+      icon: <FaUserFriends/>,
     },
   ];
 
@@ -42,6 +46,7 @@ const AsideNav = () => {
                 activeLi === item.text && styles.active
               }`}
             >
+              {item.icon}
               <Link
                 href={item.href}
                 passHref
