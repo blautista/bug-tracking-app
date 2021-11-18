@@ -13,3 +13,12 @@ export function brightenColor (value, type, howMuch) {
       break;
   }
 }
+
+export function priorityToColor (priority) {
+  switch (priority) {
+    case 'LOW': return {backgroundColor: "#6969ff", color: 'white'};
+    case 'MEDIUM': return {backgroundColor: '#faff5d', color: 'black'};
+    case 'HIGH': return {backgroundColor: '#ff5d5d', color: 'white'};
+    default: return {backgroundColor: 'blue', color: 'white'};
+  }
+}

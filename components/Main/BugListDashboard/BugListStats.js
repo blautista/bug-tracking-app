@@ -19,7 +19,7 @@ const BugListStats = ({issues}) => {
     {
       title: "Issues",
       text: totalIssues,
-      bg: '#C7EF00',
+      bg: '#84bc00',
     },
     {
       title: "Open issues",

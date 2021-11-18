@@ -20,7 +20,7 @@ const TableRow = (props) => {
         key={cont++}
         data={props.data[elem.key] || props.data[elem] || "--"}
         component={elem.component || null}
-        customProp={elem.customProp || null}
+        customProps={elem.customProps || null}
         tag={elem}
       />
     );

@@ -7,6 +7,8 @@ import Tag from "../../UI/Tag";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
+import { priorityToColor } from "../../../functions/utils"; 
+
 const BugListDashboard = (props) => {
   const router = useRouter();
 
@@ -18,7 +20,7 @@ const BugListDashboard = (props) => {
   const data = issues;
   const columns = [
     "number",
-    { key: "priority", component: <Tag styling="blue" />, customProp: "text" },
+    { key: "priority", component: <Tag />, customProps: ["text", "priority"] },
     "title",
     "createdBy",
     "status",

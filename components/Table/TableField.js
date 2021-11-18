@@ -10,7 +10,11 @@ const TableField = (props) => {
   let customProps = {};
 
   if (props.component) {
-    if (props.customProp) customProps[props.customProp] = props.data;   
+    if (props.customProps) {
+      for (const prop of props.customProps) {
+        customProps[prop] = props.data;   
+      }
+    }
     output = React.cloneElement(
       props.component,
       customProps

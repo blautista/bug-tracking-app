@@ -3,6 +3,7 @@
   border-radius: 5px;
   display:inline-block;
   margin:4px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   font-size: 14px;
   position:relative;
   align-self: center;
@@ -12,6 +13,11 @@
 .blue {
   background: rgb(105, 105, 255);
   color:white;
+}
+
+.yellow {
+  background: rgb(255, 255, 178);
+  color:gray;
 }
 
 .green {
@@ -25,6 +31,6 @@
 }
 
 .red {
-  background:rgb(255, 93, 93);
+  background:#ff5d5d;
   color:white;
 }
