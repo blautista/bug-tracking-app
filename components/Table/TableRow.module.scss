@@ -1,15 +1,19 @@
-$row-height: 50px;
+$row-height: 20px;
+$header-row-height:60px;
 $row-background: white;
 
 %row-shared {
   background: $row-background;
-  height: $row-height;
-  border-bottom: 1px solid lightgray;
+  // border-bottom: 1px solid lightgray;
 
 }
 
 .row {
   @extend %row-shared;
+  height: $row-height;
+  &:nth-child(even) {
+    background:rgb(247, 247, 247);
+  }
   &:hover {
     background:#eee;
   }
@@ -22,6 +26,8 @@ $row-background: white;
 .headerRow {
   @extend %row-shared;
   position:relative;
+  border-radius: 20px 0px 0px 20px;
+  height: $header-row-height; 
   // z-index: 3;
   box-shadow: rgba(33, 35, 38, 0.2) 0px 10px 10px -10px;
 }
