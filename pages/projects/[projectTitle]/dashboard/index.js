@@ -1,7 +1,7 @@
 import React from 'react'
-import ProjectDashboard from '../../../components/Main/Projects/ProjectDashboard/ProjectDashboard'
-import MainLayout from '../../../components/MainLayout'
-import prisma from '../../../prisma/db'
+import ProjectDashboard from '../../../../components/Main/Projects/ProjectDashboard/ProjectDashboard'
+import MainLayout from '../../../../components/MainLayout'
+import prisma from '../../../../prisma/db'
 
 const ProjectDashboardPage = (props) => {
   return (
@@ -16,6 +16,7 @@ export async function getStaticPaths () {
   const projects = JSON.parse(JSON.stringify(data));
 
   return {
+    fallback: true,
     paths: projects.map((project) => {
       return {
         params: {

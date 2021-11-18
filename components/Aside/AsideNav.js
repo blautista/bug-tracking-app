@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./AsideNav.module.scss";
-import {FaGripHorizontal, FaIgloo, FaUserFriends} from 'react-icons/fa'
+import {FaGripHorizontal, FaIgloo, FaUserFriends, FaRegChartBar} from 'react-icons/fa'
 const AsideNav = () => {
   const router = useRouter();
 
@@ -14,6 +14,14 @@ const AsideNav = () => {
       },
       text: "Projects",
       icon: <FaGripHorizontal/>,
+    },
+    {
+      href: {
+        pathname: "/projects/[projectTitle]/dashboard",
+        query: {projectTitle: router.query.projectTitle},
+      },
+      text: "Dashboard",
+      icon: <FaRegChartBar/>,
     },
     {
       href: {
@@ -33,7 +41,7 @@ const AsideNav = () => {
     },
   ];
 
-  const [activeLi, setActiveLi] = useState();
+  const [activeLi, setActiveLi] = useState('Issues');
 
   return (
     <nav className={styles.nav}>
