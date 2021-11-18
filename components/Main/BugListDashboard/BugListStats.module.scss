@@ -1,0 +1,33 @@
+$stat-item-height: 80px;
+
+.container {
+  display:flex;
+  align-items: center;
+  padding:8px;
+}
+
+.statItem {
+  height: $stat-item-height;
+  background:lightgray;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  padding:8px;
+  margin-right:8px;
+}
+
+.statNumber {
+  margin:4px;
+  padding:8px;
+  min-width: calc($stat-item-height - 24px);
+  text-align: center;
+  font-size: 2rem;
+  background:gray;
+}
+
+.statText {
+  color:white;
+  font-size: 1.2rem;
+  align-self: flex-end;
+  padding-bottom: 8px;
+}

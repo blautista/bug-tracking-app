@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Card.module.scss'
 
-const Card = ({children}) => {
+const Card = (props) => {
   return (
-    <div className={styles.card}>
-      {children}
+    <div className={styles.card} style={{backgroundColor: props.bg || 'white'}}>
+      {props.children}
     </div>
   )
 }

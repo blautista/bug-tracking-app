@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Table from "../../Table/Table";
 import styles from "./BugListDashboard.module.css";
 import BugListPanel from "./HeaderPanel/BugListPanel";
+import BugListStats from "./BugListStats";
 import Tag from "../../UI/Tag";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -61,6 +62,9 @@ const BugListDashboard = (props) => {
         <title>Issues</title>
       </Head>
       <div className={styles["dashboard-container"]}>
+        <BugListStats 
+          issues = {issues}
+        />
         <BugListPanel
           filteredIssues={filteredIssues}
           onFilterChange={filterBugsHandler}
