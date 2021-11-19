@@ -61,7 +61,7 @@ const BugListDashboard = (props) => {
   return (
     <>
       <Head>
-        <title>Issues</title>
+        <title>Issues for {router.query.projectTitle}</title>
       </Head>
       <div className={styles["dashboard-container"]}>
         <BugListStats 
