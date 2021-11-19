@@ -7,17 +7,14 @@ import Tag from "../../UI/Tag";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import { priorityToColor } from "../../../functions/utils"; 
-
 const BugListDashboard = (props) => {
   const router = useRouter();
 
   const [issues, setIssues] = useState(props.issues);
-  const [filteredIssues, setFilteredIssues] = useState([]);
+  const [filteredIssues, setFilteredIssues] = useState(props.issues);
   const [isLoading, setIsLoading] = useState(null);
   const [fetchingError, setFetchingError] = useState(null);
 
-  const data = issues;
   const columns = [
     "number",
     { key: "priority", component: <Tag />, customProps: ["text", "priority"] },
@@ -36,8 +33,8 @@ const BugListDashboard = (props) => {
     if (filterTerm.length > 0) {
       console.log(filterTerm);
       setFilteredIssues(
-        issues.filter((bug) => {
-          return bug.name.toLowerCase().includes(filterTerm.toLowerCase());
+        issues.filter((issue) => {
+          return issue.title.toLowerCase().includes(filterTerm.toLowerCase());
         })
       );
     } else {
@@ -56,8 +53,6 @@ const BugListDashboard = (props) => {
     setIssues(oldData => [...oldData, data]);
   }
 
-  console.log(data);
-
   return (
     <>
       <Head>
@@ -75,7 +70,7 @@ const BugListDashboard = (props) => {
         <Table
           isLoading={isLoading}
           onRowClick={handleTableRowClick}
-          data={data}
+          data={filteredIssues}
           labels={labels}
           columns={columns}
         />
