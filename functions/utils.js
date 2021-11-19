@@ -22,3 +22,12 @@ export function priorityToColor (priority) {
     default: return {backgroundColor: 'blue', color: 'white'};
   }
 }
+
+export function categoryToColor (priority) {
+  switch (priority) {
+    case 'BUG': return {backgroundColor: "#6969ff", color: 'white'};
+    case 'TASK': return {backgroundColor: '#faff5d', color: 'black'};
+    case 'ENHANCEMENT': return {backgroundColor: '#ff5d5d', color: 'white'};
+    default: return {backgroundColor: 'blue', color: 'white'};
+  }
+}

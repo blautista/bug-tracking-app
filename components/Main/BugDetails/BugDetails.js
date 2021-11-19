@@ -26,8 +26,8 @@ const BugDetails = (props) => {
         {newModificationModal}
         <h1 className={styles.title}>
           Issue {props.data.issueId}: {props.data.title}
-          <Tag text="Enhancement" styling="blue" />
-          <Tag text={`${props.data.priority} priority`} styling="red" />
+          <Tag text={props.data.category} category={props.data.category}/>
+          <Tag text={`${props.data.priority} priority`} priority={props.data.priority} />
         </h1>
         <p className={styles.subtitle}>
           Created by {props.data.createdBy} on {createdAt} 

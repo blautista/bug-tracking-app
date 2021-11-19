@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./Tag.module.scss";
-import { priorityToColor } from "../../functions/utils";
+import { priorityToColor, categoryToColor} from "../../functions/utils";
 
 const Tag = (props) => {
 
-  const styling = (!props.priority) ? props.styling : priorityToColor(props.priority);
+  let styling = {};
+
+  if (props.priority) styling = priorityToColor(props.priority);
+  if (props.category) styling = categoryToColor(props.category);
 
   return (
     <div className={`${styles.tag}`} style={styling} onClick={props.onClick}>
