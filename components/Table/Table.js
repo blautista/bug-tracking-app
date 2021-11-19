@@ -4,27 +4,28 @@ import TableHeaderRow from "./TableHeaderRow";
 import styles from "./Table.module.scss";
 
 const Table = (props) => {
-  
   const columnOrder = props.columns || [];
-  const clickableRows = (typeof props.clickableRows === 'boolean') ? props.clickableRows : true;
+  const clickableRows =
+    typeof props.clickableRows === "boolean" ? props.clickableRows : true;
 
   console.log(clickableRows);
-  
+
   let cont = 0;
   let issueText;
-  let headerLabels = []
+  let headerLabels = [];
 
-  if (!props.hasOwnProperty('labels')) { //use column keys as backup
+  if (!props.hasOwnProperty("labels")) {
+    //use column keys as backup
     for (const elem of props.columns) {
-      if (elem.hasOwnProperty('key')) headerLabels.push(elem.key);
-      else headerLabels.push(elem); 
+      if (elem.hasOwnProperty("key")) headerLabels.push(elem.key);
+      else headerLabels.push(elem);
     }
   } else headerLabels = [...props.labels];
 
   const handleRowClick = (rowData) => {
     props.onRowClick(rowData);
   };
-  
+
   if (props.isLoading) issueText = <p>Loading...</p>;
   if (props.fetchingError) issueText = <p>Error: {fetchingError.message}</p>;
 
@@ -37,6 +38,13 @@ const Table = (props) => {
             <TableHeaderRow labels={headerLabels} />
           </thead>
           <tbody className={styles.tbody}>
+            {props.data.length === 0 && (
+              <tr>
+                <td colspan="100%">
+                  <p className={styles.warningMessage}>No results found</p>
+                </td>
+              </tr>
+            )}
             {props.data.map((rowData) => {
               return (
                 <TableRow
