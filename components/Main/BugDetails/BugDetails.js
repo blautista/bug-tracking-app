@@ -1,66 +1,85 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./BugDetails.module.scss";
-import Card from "../../UI/Card";
 import Tag from "../../UI/Tag";
 import Table from "../../Table/Table";
 import Button from "../../Buttons/Button";
 import Modal from "../../Modal/Modal";
 import BugComments from "./BugComments";
+import BugDetailsMain from "./BugDetailsMain";
+
+const SectionContainer = ({ children, title }) => {
+  return (
+    <section className={styles.sectionContainer}>
+      <h2 className={styles.sectionTitle}>{title}</h2>
+      {children}
+    </section>
+  );
+};
 
 const BugDetails = (props) => {
-
   const [newModificationModal, setNewModificationModal] = useState(null);
-  
+
   const openNewModificationModal = () => {
-    setNewModificationModal(<Modal title='New Modification' onExit={closeNewModificationModal}/>);
-  }
+    setNewModificationModal(
+      <Modal title="New Modification" onExit={closeNewModificationModal} />
+    );
+  };
   const closeNewModificationModal = () => {
     setNewModificationModal(null);
-  }
+  };
 
   const createdAt = new Date(props.data.createdAt).toUTCString();
-  
+  const lastModifiedAt = props.data.history.length
+    ? new Date(
+        props.data.history[props.data.history.length - 1].createdAt
+      ).toUTCString()
+    : createdAt;
+
   return (
     <>
       <div className={styles.container}>
         {newModificationModal}
-        <h1 className={styles.title}>
-          Issue {props.data.issueId}: {props.data.title}
-          <Tag text={props.data.category} category={props.data.category}/>
-          <Tag text={`${props.data.priority} priority`} priority={props.data.priority} />
-        </h1>
-        <p className={styles.subtitle}>
-          Created by {props.data.createdBy} on {createdAt} 
-          {props.data.history && `| Last modified by ${props.data.history[props.data.history.length - 1].username} on 
-          ${props.data.history[props.data.history.length - 1].createdAt}`}
-        </p>
-
-        {/* ISSUE DESCRIPTION */}
-
-        <section className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Description:</h2>
+        <SectionContainer title="">
+          <BugDetailsMain
+            createdAt={props.data.createdAt}
+            createdBy={props.data.createdBy}
+            category={props.data.category}
+            priority={props.data.priority}
+            issueId={props.data.issueId}
+            title={props.data.title}
+            lastModifiedAt={lastModifiedAt}
+          />
+        </SectionContainer>
+        <SectionContainer title="Description:">
           <p>{props.data.description}</p>
-        </section>
-
-        {/* ISSUE HISTORY */}
-
-        <section className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>History</h2>
+        </SectionContainer>
+        <SectionContainer title="History:">
           <Table
             data={props.data.history}
-            columns={["date", "user", "description"]}
-            labels={["Modification date", "Modified by", "Summary"]}
+            columns={[
+              "createdBy",
+              { key: "status", component: <Tag />, customProps: ["text"] },
+              "description",
+              "createdAt",
+            ]}
+            labels={[
+              "Modified by",
+              "New Status",
+              "Summary",
+              "Modification date",
+            ]}
             clickableRows={false}
           />
-          <Button styling="blue" text="New Modification" onClick={openNewModificationModal}/>
-        </section>
+          <Button
+            styling="blue"
+            text="New Modification"
+            onClick={openNewModificationModal}
+          />
+        </SectionContainer>
 
-        {/* COMMENTS */}
-
-        <section className={styles.sectionContainer}>
-          <h2 className={styles.sectionTitle}>Comments:</h2>
-          <BugComments comments={props.data.comments} issueId={props.data.id}/>
-        </section>
+        <SectionContainer title="Comments">
+          <BugComments comments={props.data.comments} issueId={props.data.id} />
+        </SectionContainer>
       </div>
     </>
   );
