@@ -2,9 +2,32 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./AsideNav.module.scss";
-import {FaGripHorizontal, FaIgloo, FaUserFriends, FaRegChartBar} from 'react-icons/fa'
+import {
+  FaGripHorizontal,
+  FaIgloo,
+  FaUserFriends,
+  FaRegChartBar,
+} from "react-icons/fa";
+
+const NavItem = ({ icon, text, href, isActive }) => {
+  return (
+    <li
+      key={text}
+      className={`${styles.li} ${isActive === text && styles.active}`}
+    >
+      {icon}
+      <Link href={href} passHref>
+        <a onClick={() => setActiveLi(text)} className={`${styles.link}`}>
+          {text}
+        </a>
+      </Link>
+    </li>
+  );
+};
+
 const AsideNav = () => {
   const router = useRouter();
+  const isWithinProject = router.query.hasOwnProperty("projectTitle");
 
   const navItems = [
     {
@@ -12,24 +35,27 @@ const AsideNav = () => {
         pathname: "/projects",
         query: {},
       },
-      text: "Projects",
-      icon: <FaGripHorizontal/>,
+      text: `Projects${isWithinProject ? `/${router.query.projectTitle}` : ""}`,
+      icon: <FaGripHorizontal />,
     },
+  ];
+
+  const withinProjectItems = [
     {
       href: {
         pathname: "/projects/[projectTitle]/dashboard",
-        query: {projectTitle: router.query.projectTitle},
+        query: { projectTitle: router.query.projectTitle },
       },
       text: "Dashboard",
-      icon: <FaRegChartBar/>,
+      icon: <FaRegChartBar />,
     },
     {
       href: {
         pathname: "/projects/[projectTitle]/issues",
-        query: {projectTitle: router.query.projectTitle},
+        query: { projectTitle: router.query.projectTitle },
       },
       text: "Issues",
-      icon: <FaIgloo/>
+      icon: <FaIgloo />,
     },
     {
       href: {
@@ -37,38 +63,30 @@ const AsideNav = () => {
         query: {},
       },
       text: "Manage Users",
-      icon: <FaUserFriends/>,
+      icon: <FaUserFriends />,
     },
   ];
 
-  const [activeLi, setActiveLi] = useState('Issues');
+  const [activeLi, setActiveLi] = useState("Issues");
 
   return (
     <nav className={styles.nav}>
       <ul className={styles.ul}>
-        {navItems.map((item) => {
-          return (
-            <li
-              key={item.text}
-              className={`${styles.li} ${
-                activeLi === item.text && styles.active
-              }`}
-            >
-              {item.icon}
-              <Link
-                href={item.href}
-                passHref
-              >
-                <a
-                  onClick={() => setActiveLi(item.text)}
-                  className={`${styles.link}`}
-                >
-                  {item.text}
-                </a>
-              </Link>
-            </li>
-          );
+        {navItems.map(({ icon, text, href }) => {
+          return <NavItem icon={icon} text={text} href={href} />;
         })}
+        <ul>
+          {isWithinProject &&
+            withinProjectItems.map(({ icon, text, href }) => (
+              <NavItem
+                isActive={text === activeLi}
+                onClick={() => setActiveLi(text)}
+                icon={icon}
+                text={text}
+                href={href}
+              />
+            ))}
+        </ul>
       </ul>
     </nav>
   );

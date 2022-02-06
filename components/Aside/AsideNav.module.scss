@@ -1,40 +1,38 @@
-$nav-row-height: 50px; 
+$nav-row-height: 50px;
 
 .nav {
-  padding-top:8px;
-  width:100%;
+  padding-top: 8px;
+  width: 100%;
   .ul {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     .li {
       list-style: none;
-      height:$nav-row-height;
-      width:100%;
-      padding:16px;
-      font-size:1.3em;
-      display:flex;
+      height: $nav-row-height;
+      width: 100%;
+      padding: 16px;
+      font-size: 1.3em;
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: border-left .2s, color .2s;
-      color:#555;
+      transition: border-left 0.2s, color 0.2s;
+      color: #777;
       &:hover {
-        background:rgb(214, 225, 240);
-        color:black;
+        color: black;
       }
 
       a {
-        width:100%;
-        display:flex;
+        width: 100%;
+        display: flex;
         align-items: center;
         padding-left: 16px;
-        height: $nav-row-height;  
+        height: $nav-row-height;
       }
     }
     .active {
-      box-shadow: rgba(33, 35, 38, 0.3) 0px 10px 20px -10px;
-      color:#333;
-
+      color: #333;
+      font-weight: bold;
       &:hover {
         color: #333;
       }
