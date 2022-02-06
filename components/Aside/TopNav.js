@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import Link from "next/dist/client/link";
 import styles from "./TopNav.module.scss";
+import { splitPathnameIntoItems } from "../../functions/utils";
 
 const NavItem = ({ text, href }) => {
   return (
@@ -15,18 +16,7 @@ const NavItem = ({ text, href }) => {
 const TopNav = (props) => {
   const router = useRouter();
 
-  const links = router.asPath.substring(1).split("/");
-
-  let navItems = [];
-  let acum = "";
-  for (const link of links) {
-    acum = `${acum}/${link}`;
-    const newNavItem = {
-      href: acum,
-      text: link,
-    };
-    navItems.push(newNavItem);
-  }
+  let navItems = splitPathnameIntoItems(router.asPath);
 
   return (
     <nav className={styles.navContainer}>
