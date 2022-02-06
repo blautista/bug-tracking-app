@@ -23,7 +23,7 @@ model User {
 
 model Project {
   id        String   @id @default(cuid())
-  title     String @unique
+  title     String   @unique
   createdAt DateTime @default(now())
   issues    Issue[]
 }
@@ -39,21 +39,21 @@ model Comment {
 }
 
 model Issue {
-  id          String              @id @default(cuid())
-  number      Int
-  title       String              
-  description String              @db.Text
-  createdAt   DateTime            @default(now())
-  comments    Comment[]
-  history     IssueModification[]
-  status      IssueStatus         @default(UNCONFIRMED)
-  priority    IssuePriority
-  img         String?
-  category    IssueCategory
-  user        User                @relation(fields: [createdBy], references: [username])
-  project     Project             @relation(fields: [projectTitle], references: [title])
-  projectTitle   String
-  createdBy   String
+  id           String              @id @default(cuid())
+  number       Int
+  title        String
+  description  String              @db.Text
+  createdAt    DateTime            @default(now())
+  comments     Comment[]
+  history      IssueModification[]
+  status       IssueStatus         @default(UNCONFIRMED)
+  priority     IssuePriority
+  img          String?
+  category     IssueCategory
+  user         User                @relation(fields: [createdBy], references: [username])
+  project      Project             @relation(fields: [projectTitle], references: [title])
+  projectTitle String
+  createdBy    String
 }
 
 model IssueModification {

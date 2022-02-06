@@ -31,7 +31,6 @@ const BugListDashboard = (props) => {
 
   const filterBugsHandler = (filterTerm) => {
     if (filterTerm.length > 0) {
-      console.log(filterTerm);
       setFilteredIssues(
         issues.filter((issue) => {
           return issue.title.toLowerCase().includes(filterTerm.toLowerCase());
@@ -45,13 +44,13 @@ const BugListDashboard = (props) => {
   const handleTableRowClick = (rowData) => {
     router.push({
       pathname: router.pathname + `/${rowData.number}`,
-      query: {projectTitle: router.query.projectTitle},
+      query: { projectTitle: router.query.projectTitle },
     });
   };
 
   const handleNewIssue = (data) => {
-    setIssues(oldData => [...oldData, data]);
-  }
+    setIssues((oldData) => [...oldData, data]);
+  };
 
   return (
     <>
@@ -59,9 +58,7 @@ const BugListDashboard = (props) => {
         <title>Issues for {router.query.projectTitle}</title>
       </Head>
       <div className={styles["dashboard-container"]}>
-        <BugListStats 
-          issues = {issues}
-        />
+        <BugListStats issues={issues} />
         <BugListPanel
           filteredIssues={filteredIssues}
           onFilterChange={filterBugsHandler}

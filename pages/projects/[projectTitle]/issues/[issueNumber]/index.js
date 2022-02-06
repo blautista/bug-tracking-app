@@ -46,6 +46,7 @@ export async function getStaticProps({ params }) {
     },
     include: {
       comments: true,
+      history: true,
     }
   });
 
